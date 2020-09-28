@@ -12,6 +12,7 @@ bin/
 
 # NetBeans
 nb-configuration.xml
+application.properties
 
 # Visual Studio Code
 .vscode
