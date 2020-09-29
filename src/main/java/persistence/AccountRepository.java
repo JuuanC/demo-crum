@@ -6,10 +6,17 @@
 
 package persistence;
 
+import javax.enterprise.context.ApplicationScoped;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import model.Account;
+
 /**
  *
  * @author Juuan
  */
-public class AccountRepository {
+
+@ApplicationScoped
+public class AccountRepository implements PanacheRepository<Account>{
+	
 
 }
