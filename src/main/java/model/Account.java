@@ -25,7 +25,7 @@ import lombok.Data;
 public class Account{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accountSequence")
-	@SequenceGenerator(name="accountSequence", sequenceName = "accountSequence", allocationSize = 1, initialValue = 11)
+	@SequenceGenerator(name="accountSequence", sequenceName = "accountSequence", allocationSize = 1, initialValue = 1)
 	private Long id_account;
 	@Column
 	private String name;

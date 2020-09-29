@@ -37,13 +37,13 @@ public class AccountService {
 	}
 	
 	public int update(Account account) {
-		return accountRepository.update("name=:name"+
-										"and rfc = :rfc" +
-										"and user = :user" +
-										"and password = :password",
+		return accountRepository.update("name=:name "+
+										", rfc = :rfc " +
+										", username = :username " +
+										", password = :password ",
 										Parameters.with("name", account.getName())
 										.and("rfc", account.getRfc())
-										.and("user", account.getUser())
+										.and("username", account.getUsername())
 										.and("password", account.getPassword()));
 	}
 	
