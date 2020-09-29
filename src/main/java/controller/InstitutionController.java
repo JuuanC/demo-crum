@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -16,7 +17,7 @@ import javax.ws.rs.core.Response;
 import model.Institution;
 import service.InstitutionService;
 
-@ApplicationScoped
+@RequestScoped
 @Path("/instituciones")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -25,7 +26,7 @@ public class InstitutionController {
 	private InstitutionService institutionServ;
 	
 	@POST
-	@Path("/save")
+	@Path("/data")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response saveInstitution(Institution ins) {
 		institutionServ.save(ins);
@@ -33,7 +34,7 @@ public class InstitutionController {
 	}
 	
 	@GET
-	@Path("/all")
+	@Path("/data")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response all() {
 		List<Institution> listInstitution = institutionServ.listInstitutions();
@@ -41,7 +42,7 @@ public class InstitutionController {
 	}
 	
 	@GET
-	@Path("/{id}")
+	@Path("/data/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getById(@PathParam("id") Long id) {
 		Institution ins = institutionServ.getById(id);

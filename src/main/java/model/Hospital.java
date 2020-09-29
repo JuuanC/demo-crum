@@ -25,15 +25,20 @@ public class Hospital extends PanacheEntityBase {
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "SEQ_PROD")
     @SequenceGenerator(name="SEQ_PROD", sequenceName = "SEQ_PROD", allocationSize = 1, initialValue = 11)
+	@JsonProperty(value = "id")
 	private Long id;
 	
 	@Column(unique=true)
+	@JsonProperty(value = "nameHospital")
 	private String nameHospital;
 	
+	@JsonProperty(value = "street")
 	private String street;
 	
+	@JsonProperty(value = "streetNumber")
 	private String streetNumber;
 	
+	@JsonProperty(value = "zipcode")
 	private String zipCode;
 	
 	@JsonIgnore
