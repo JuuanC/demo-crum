@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
@@ -21,4 +22,14 @@ public class Institution extends PanacheEntityBase{
     private Long id;
 	
 	private String name;
+
+	public Institution(Long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+	
+	public Institution() {}
+	
+	
 }
