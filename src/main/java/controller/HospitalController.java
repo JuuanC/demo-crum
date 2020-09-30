@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -25,9 +26,16 @@ public class HospitalController {
 	@Inject 
 	private HospitalService hospitalServ;
 	
+	@RolesAllowed({"USER", "ADMIN"})
+	@GET @Path("/user") @Produces(MediaType.APPLICATION_JSON)
+	public Response user() {
+		return Response.ok("Content").build();
+	}
+	
 	@POST
 	@Path("/data/{institutionId}")
 	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveHospital(@PathParam("institutionId") Long id, Hospital hospital) {
 		hospitalServ.save(hospital, id);
 		return Response.ok().build();
@@ -35,7 +43,9 @@ public class HospitalController {
 	
 	@GET
 	@Path("/data")
+	@RolesAllowed("USER")
 	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response all() {
 		List<Hospital> listHospital = hospitalServ.listHospitals();
 		return Response.ok(listHospital).build();
@@ -43,6 +53,7 @@ public class HospitalController {
 	@GET
 	@Path("/data/{nameSection}")
 	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response searchByAlikeName(@PathParam("nameSection") String nameSection) {
 		List<Hospital> listHospital = hospitalServ.listByAlikeName(nameSection);
 		return Response.ok(listHospital).build();
@@ -51,6 +62,7 @@ public class HospitalController {
 	@GET
 	@Path("/data/id/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getById(@PathParam("id") Long id) {
 		Hospital hospital = hospitalServ.getById(id);
 		return Response.ok(hospital).build();
