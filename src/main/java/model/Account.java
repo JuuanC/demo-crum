@@ -13,6 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 /**
@@ -25,15 +28,21 @@ import lombok.Data;
 public class Account{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accountSequence")
-	@SequenceGenerator(name="accountSequence", sequenceName = "accountSequence", allocationSize = 1, initialValue = 1)
+	@SequenceGenerator(name="accountSequence", sequenceName = "accountSequence")
+	@JsonProperty(value = "id_account")
 	private Long id_account;
 	@Column
+	@JsonProperty(value = "name")
 	private String name;
 	@Column
+	@JsonProperty(value = "rfc")
 	private String rfc;
 	@Column
+	@JsonProperty(value = "username")
 	private String username;
 	@Column
+	@JsonProperty(value = "password")
 	private String password;
+	
 
 }

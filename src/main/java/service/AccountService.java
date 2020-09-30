@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import io.quarkus.panache.common.Parameters;
 import model.Account;
@@ -27,15 +28,19 @@ public class AccountService {
 	@Inject
 	private AccountRepository accountRepository;
 	
+	
+	@Transactional
 	public boolean save(Account account) {
 		accountRepository.persist(account);
 		return accountRepository.isPersistent(account);
 	}
 	
+	@Transactional
 	public boolean delete(Long id) {
 		return accountRepository.deleteById(id);
 	}
 	
+	@Transactional
 	public int update(Account account) {
 		return accountRepository.update("name=:name "+
 										", rfc = :rfc " +
