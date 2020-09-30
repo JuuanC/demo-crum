@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -11,10 +12,15 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
+
+import org.jboss.logging.Logger;
 
 import model.Institution;
+import security.AuthController;
 import service.InstitutionService;
 
 @RequestScoped
@@ -24,6 +30,8 @@ import service.InstitutionService;
 public class InstitutionController {
 	@Inject
 	private InstitutionService institutionServ;
+	
+	private static final Logger log = Logger.getLogger(InstitutionController.class);
 	
 	@POST
 	@Path("/data")
@@ -36,7 +44,9 @@ public class InstitutionController {
 	@GET
 	@Path("/data")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response all() {
+	@RolesAllowed("User")
+	public Response all(@Context SecurityContext ctx) {
+		log.info(ctx.getUserPrincipal().getName() + " - " + ctx.getAuthenticationScheme());
 		List<Institution> listInstitution = institutionServ.listInstitutions();
 		return Response.ok(listInstitution).build();
 	}
