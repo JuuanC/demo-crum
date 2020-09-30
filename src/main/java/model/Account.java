@@ -41,19 +41,19 @@ public class Account{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accountSequence")
 	@SequenceGenerator(name="accountSequence", sequenceName = "accountSequence")
 	@JsonProperty(value = "id_account")
-	private Long id_account;
+	public Long id_account;
 	@Column
 	@JsonProperty(value = "name")
-	private String name;
+	public String name;
 	@Column
 	@JsonProperty(value = "rfc")
-	private String rfc;
+	public String rfc;
 	@Column
 	@JsonProperty(value = "username")
-	private String username;
+	public String username;
 	@Column
 	@JsonProperty(value = "password")
-	private String password;
+	public String password;
 	
 	@Column
 	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
