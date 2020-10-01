@@ -49,6 +49,7 @@ public class AuthController {
 	}
 	
 	@RolesAllowed("Admin")
+	//@PermitAll
 	@POST @Path("/register")
 	public Response register(@RequestBody NewUser nuevoUsuario) {
 		Account cuenta = new Account(nuevoUsuario.getName(), nuevoUsuario.getRfc(), nuevoUsuario.getUsername(), passwordEncoder.encode(nuevoUsuario.getPassword()));

@@ -53,11 +53,14 @@ public class AccountService {
 		return accountRepository.update("name=:name "+
 										", rfc = :rfc " +
 										", username = :username " +
-										", password = :password ",
+										", password = :password WHERE id=:id",
 										Parameters.with("name", account.getName())
 										.and("rfc", account.getRfc())
 										.and("username", account.getUsername())
-										.and("password", account.getPassword()));
+										.and("password", account.getPassword())
+										.and("id", account.getId_account())
+										);
+		
 	}
 	
 	public List<Account> getAll() {
