@@ -35,6 +35,7 @@ public class InstitutionController {
 	
 	@POST
 	@Path("/data")
+	@RolesAllowed({"User", "Admin"})
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response saveInstitution(Institution ins) {
 		institutionServ.save(ins);
@@ -43,16 +44,16 @@ public class InstitutionController {
 	
 	@GET
 	@Path("/data")
+	@RolesAllowed({"User", "Admin"})
 	@Produces(MediaType.APPLICATION_JSON)
-	@RolesAllowed("User")
-	public Response all(@Context SecurityContext ctx) {
-		log.info(ctx.getUserPrincipal().getName() + " - " + ctx.getAuthenticationScheme());
+	public Response all() {
 		List<Institution> listInstitution = institutionServ.listInstitutions();
 		return Response.ok(listInstitution).build();
 	}
 	
 	@GET
 	@Path("/data/{id}")
+	@RolesAllowed({"User", "Admin"})
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getById(@PathParam("id") Long id) {
 		Institution ins = institutionServ.getById(id);

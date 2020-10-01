@@ -8,6 +8,7 @@ package controller;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -19,6 +20,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import dto.AccountUpdateDTO;
 import model.Account;
 import service.AccountService;
 
@@ -43,6 +46,7 @@ public class AccountController {
 	
 	
 	@DELETE
+	@RolesAllowed("Admin")
 	@Path("/delete/{id}")
 	public boolean deleteAccount(@PathParam("id") Long id) {
 		return accountService.delete(id);
@@ -50,18 +54,21 @@ public class AccountController {
 	
 	
 	@PUT
+	@RolesAllowed("Admin")
 	@Path("/update")
-	public int updateAccount(Account account) {
+	public int updateAccount(AccountUpdateDTO account) {
 		return accountService.update(account);
 	}
 	
 	@GET
+	@RolesAllowed("Admin")
 	@Path("/getAll")
 	public List<Account> getAll(){
 		return accountService.getAll();
 	}
 	
 	@GET
+	@RolesAllowed("Admin")
 	@Path("/getById/{id}")
 	public Account getById(@PathParam("id") Long id) {
 		return accountService.getById(id);

@@ -24,7 +24,7 @@ import lombok.Data;
 public class Hospital extends PanacheEntityBase {
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "SEQ_PROD")
-    @SequenceGenerator(name="SEQ_PROD", sequenceName = "SEQ_PROD", allocationSize = 1, initialValue = 11)
+    @SequenceGenerator(name="SEQ_PROD", sequenceName = "SEQ_PROD", allocationSize = 1, initialValue = 1)
 	@JsonProperty(value = "id")
 	private Long id;
 	

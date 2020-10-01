@@ -7,6 +7,9 @@
 package persistence;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import model.Account;
 
@@ -17,6 +20,11 @@ import model.Account;
 
 @ApplicationScoped
 public class AccountRepository implements PanacheRepository<Account>{
-	
+	@Inject
+	EntityManager em;
+	public Account findByUsername(String username) {
+		return em.createQuery("FROM account WHERE username = :username", Account.class)
+			.setParameter("username", username).getSingleResult();
+		}
 
 }

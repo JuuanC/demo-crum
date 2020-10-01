@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
@@ -26,7 +27,7 @@ public class HospitalController {
 	@Inject 
 	private HospitalService hospitalServ;
 	
-	@RolesAllowed({"USER", "ADMIN"})
+	@RolesAllowed({"User", "Admin"})
 	@GET @Path("/user") @Produces(MediaType.APPLICATION_JSON)
 	public Response user() {
 		return Response.ok("Content").build();
@@ -34,6 +35,7 @@ public class HospitalController {
 	
 	@POST
 	@Path("/data/{institutionId}")
+	@RolesAllowed({"User", "Admin"})
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveHospital(@PathParam("institutionId") Long id, Hospital hospital) {
@@ -43,7 +45,7 @@ public class HospitalController {
 	
 	@GET
 	@Path("/data")
-	@RolesAllowed("USER")
+	@RolesAllowed({"User", "Admin"})
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response all() {
@@ -52,6 +54,7 @@ public class HospitalController {
 	}
 	@GET
 	@Path("/data/{nameSection}")
+	@RolesAllowed({"User", "Admin"})
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response searchByAlikeName(@PathParam("nameSection") String nameSection) {
@@ -61,6 +64,7 @@ public class HospitalController {
 	
 	@GET
 	@Path("/data/id/{id}")
+	@RolesAllowed({"User", "Admin"})
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getById(@PathParam("id") Long id) {

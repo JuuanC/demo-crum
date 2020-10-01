@@ -21,7 +21,7 @@ public class TokenUtils {
 	private static final Logger log = Logger.getLogger(TokenUtils.class);
 	public static String generateToken(String username, Set<Role> roles, Long duration, String issuer) throws Exception {
 		String privateKeyLocation = "/privatekey.pem";
-		PrivateKey privateKey = readPrivateKey(privateKeyLocation);
+		PrivateKey privateKey =  readPrivateKey(privateKeyLocation);
 		log.info(privateKey.getFormat().toString());
 		JwtClaimsBuilder claimsBuilder = Jwt.claims();
 		long currentTimeInSecs = currentTimeInSecs();

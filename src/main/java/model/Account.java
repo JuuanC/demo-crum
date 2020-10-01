@@ -33,13 +33,13 @@ import security.enums.RoleEnum;
  *
  * @author Juuan
  */
-@Data
-@Entity
+
+@Entity(name = "account")
 @Table(name = "account")
 public class Account{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accountSequence")
-	@SequenceGenerator(name="accountSequence", sequenceName = "accountSequence")
+	@SequenceGenerator(name="accountSequence", sequenceName = "accountSequence", allocationSize = 1, initialValue = 1)
 	@JsonProperty(value = "id_account")
 	public Long id_account;
 	@Column
@@ -56,7 +56,7 @@ public class Account{
 	public String password;
 	
 	@Column
-	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
 	public Set<Role> roles;
@@ -103,5 +103,76 @@ public class Account{
 		this.password = password;
 		this.roles = roles;
 	}
+	
+	public Account(String name, String rfc, String username, String password) {
+		super();
+		this.name = name;
+		this.rfc = rfc;
+		this.username = username;
+		this.password = password;
+	}
+
+
+	public Long getId_account() {
+		return id_account;
+	}
+
+
+	public void setId_account(Long id_account) {
+		this.id_account = id_account;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getRfc() {
+		return rfc;
+	}
+
+
+	public void setRfc(String rfc) {
+		this.rfc = rfc;
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+	
+	
+
 
 }

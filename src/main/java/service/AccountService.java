@@ -13,9 +13,11 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import dto.AccountUpdateDTO;
 import io.quarkus.panache.common.Parameters;
 import model.Account;
 import persistence.AccountRepository;
+import security.PBKDF2Encoder;
 
 /**
  *
@@ -24,6 +26,9 @@ import persistence.AccountRepository;
 
 @ApplicationScoped
 public class AccountService {
+	
+	@Inject
+	PBKDF2Encoder passwordEncoder;
 	
 	@Inject
 	private AccountRepository accountRepository;
@@ -41,7 +46,10 @@ public class AccountService {
 	}
 	
 	@Transactional
-	public int update(Account account) {
+	public int update(AccountUpdateDTO account) {
+		String newPassword = account.getPassword();
+		account.setPassword(passwordEncoder.encode(newPassword));
+		
 		return accountRepository.update("name=:name "+
 										", rfc = :rfc " +
 										", username = :username " +
@@ -58,6 +66,10 @@ public class AccountService {
 	
 	public Account getById(Long id) {
 		return accountRepository.findById(id);
+	}
+	
+	public Account getByUsername(String username) {
+		return accountRepository.findByUsername(username);
 	}
 
 }

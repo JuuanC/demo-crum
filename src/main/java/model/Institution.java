@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 public class Institution extends PanacheEntityBase{
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "SEQ_PROD")
-    @SequenceGenerator(name="SEQ_PROD", sequenceName = "SEQ_PROD", allocationSize = 1, initialValue = 11)
+    @SequenceGenerator(name="SEQ_PROD", sequenceName = "SEQ_PROD", allocationSize = 1, initialValue = 1)
     private Long id;
 	
 	private String name;
