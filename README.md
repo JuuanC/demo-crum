@@ -1,8 +1,5 @@
 # demo-crum project
 
-# Optum Pathway CCM Developer Case Study
-
-
 The only thing better than a Maven archetype is a repo you can fork with everything already setup. Skip the documentation and just fork-and-code.
 
 Delete the sample code, replace with your own and you’re good to go.
@@ -65,43 +62,39 @@ If you want to learn more about building native executables, please consult http
 
 ### PostgreSQL database 
 
-database structure
+to view the CRUD operations implemented
 
-|Account    |
+|  Username     |  Password |
+|---------------|-----------|
+|`sa`   | password  |
+
+|                    Account                   |
+|----------------------------------------------|
 |id_account | name | password | rfc | username |
-
-Note.- All the information is on the 'application.yml'
 
 
 ### Testing on postman
-
-
 
 ### Web Page URLs
 
 |  URL |  Method |
 |----------|--------------|
-|`http://localhost:8080/save`       | POST |
-|`http://localhost:8080/user/1`         | GET |
-|`http://localhost:8080/all` | GET |
+|`http://localhost:8080/account/save`       | POST |
+|`http://localhost:8080/account/delete/id`         | DELETE |
+|`http://localhost:8080/account/update` | PUT |
+|`http://localhost:8080/account/getAll` | GET |
+|`http://localhost:8080/account/getById/id` | GET |
+|--------------------|-----------------------|
+|`http://localhost:8080/instituciones/data/` | POST |
+|`http://localhost:8080/instituciones/data/` | GET |
+|`http://localhost:8080/instituciones/data/id` | GET |
+|--------------------|-----------------------|
+|`http://localhost:8080/hospitales/data/` | POST |
+|`http://localhost:8080/hospitales/data/` | GET |
+|`http://localhost:8080/hospitales/data/nameSection` | GET |
+|`http://localhost:8080/hospitales/data/id` | GET |
 
 to save one user with the 'POST' operation please use the following on the body, select `raw` radio button and `JSON` from the dropdown menu at the left
-
-```
-{
-    "firstName" : "John",
-    "middleInitial": "D",
-    "lastName": "Doe",
-    "city":"Minneapolis",
-    "state" : "MN",
-    "zipCode": "55444",
-    "phoneNumber" : "999-999-999"
-}
-
-IMPORTANT.- The fields `firstName, lastName` CAN'T be nulls
-```
-
-I have added 10 dummy users to the DB on the `data.sql` file under `resources` directory, and is recreated every time you restart the service, so if you add a user with the `POST` operation it will get the id 11.
 
 ###Package structure
 
@@ -114,40 +107,25 @@ I have added 10 dummy users to the DB on the `data.sql` file under `resources` d
 │   └── main
 │       └── java
 │           ├── com.optum.optumsample.controller
-│           ├── com.optum.optumsample.exception
+│           ├── com.optum.optumsample.dto
 │           ├── com.optum.optumsample.model
-│           ├── com.optum.optumsample.controller
 │           ├── com.optum.optumsample.persistence
+│           ├── com.optum.optumsample.security
+│           └── com.optum.optumsample.security.DTO
+│           └── com.optum.optumsample.security.emuns
 │           └── com.optum.optumsample.service
 │           
 ├── src
 │   └── main
-│       └── resources
-│           ├── static
-│           ├── templates
-│           │   └── view.html
-│           └── application.yml
+│       └── META-INF
+│           │   └── resources
+│           ├── application.properties
+│           ├── csr.pem
+│           └── privatekey.pem
+│           └── publickey.pem
 │           
-├── src
-│   └── test
-│       └── java
-│           └── com.optum.optumsample
-│               ├── com.optum.optumsample.controller
-│               └── com.optum.optumsample.service
 ├── mvnw
 ├── mvnw.cmd
 ├── pom.xml
 └── README.md
 ```
-
-## packages
-
-* 	`controllers` — to listen to the client;
-* 	`exception` — to handle the exceptions;
-* 	`models` — to hold our entities;
-* 	`persistence` — to communicate with the database;
-* 	`services` — to hold our business logic;
-* 	`resources/` - Contains all the static resources, templates and property files.
-* 	`resources/application.yml` - It contains application-wide properties. Spring reads the properties defined in this file to configure your application. You can define server’s default port, server’s context path, database URLs etc, in this file.
-* 	`test/` - contains unit and integration tests
-* 	`pom.xml` - contains all the project dependencies
