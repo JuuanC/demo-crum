@@ -68,7 +68,7 @@ to view the CRUD operations implemented
 |---------------|-----------|
 |`sa`   | password  |
 
-|                    Account                   |
+|                    Account         |     |   |
 |----------------------------------------------|
 |id_account | name | password | rfc | username |
 
