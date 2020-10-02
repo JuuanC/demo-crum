@@ -60,19 +60,6 @@ You can then execute your native executable with: `./target/demo-crum-1.0.0-SNAP
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
 
-### PostgreSQL database 
-
-to view the CRUD operations implemented
-
-|  Username     |  Password |
-|---------------|-----------|
-|`sa`   | password  |
-
-|                    Account         |     |   |
-|----------------------------------------------|
-|id_account | name | password | rfc | username |
-
-
 ### Testing on postman
 
 ### Web Page URLs
