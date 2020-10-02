@@ -8,6 +8,7 @@ package controller;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -39,14 +40,15 @@ public class AccountController {
 	
 	
 	@POST
-	@Path("/save")
+//	@Path("/save")
 	public boolean saveAccount(Account account) {
 		return accountService.save(account);
 	}
 	
 	
 	@DELETE
-	@RolesAllowed("Admin")
+//	@RolesAllowed("Admin")
+	@PermitAll
 	@Path("/delete/{id}")
 	public boolean deleteAccount(@PathParam("id") Long id) {
 		return accountService.delete(id);
@@ -54,21 +56,24 @@ public class AccountController {
 	
 	
 	@PUT
-	@RolesAllowed("Admin")
+//	@RolesAllowed("Admin")
+	@PermitAll
 	@Path("/update")
 	public int updateAccount(AccountUpdateDTO account) {
 		return accountService.update(account);
 	}
 	
 	@GET
-	@RolesAllowed("Admin")
+//	@RolesAllowed("Admin")
+	@PermitAll
 	@Path("/getAll")
 	public List<Account> getAll(){
 		return accountService.getAll();
 	}
 	
 	@GET
-	@RolesAllowed("Admin")
+//	@RolesAllowed("Admin")
+	@PermitAll
 	@Path("/getById/{id}")
 	public Account getById(@PathParam("id") Long id) {
 		return accountService.getById(id);
