@@ -49,23 +49,17 @@ public class AuthController {
 	}
 	
 	@RolesAllowed("Admin")
-	//@PermitAll
 	@POST @Path("/register")
 	public Response register(@RequestBody NewUser nuevoUsuario) {
 		Account cuenta = new Account(nuevoUsuario.getName(), nuevoUsuario.getRfc(), nuevoUsuario.getUsername(), passwordEncoder.encode(nuevoUsuario.getPassword()));
 		Set<Role> roles = new HashSet<>();
-		log.info("Hasta aqui llegue " + RoleEnum.User);
 		Role role = roleService.getRoleByName(RoleEnum.User);
 		
-		log.info("Hasta aqui llegue 2 " + role.getId());
 		roles.add(role);
-		log.info(nuevoUsuario.getRoles());
 		if(nuevoUsuario.getRoles().contains("Admin")) {
 			Role roleAdmin = roleService.getRoleByName(RoleEnum.Admin);
-			log.info("Hasta aqui llegue 3 " + roleAdmin.getRole().toString());
 			roles.add(roleAdmin);
 		}
-		log.info(roles.toString());
 		cuenta.setRoles(roles);
 		accountService.save(cuenta);
 		return Response.ok().build();
