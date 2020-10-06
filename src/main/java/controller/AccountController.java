@@ -40,14 +40,14 @@ public class AccountController {
 	
 	
 	@POST
-//	@Path("/save")
+	@Path("/save")
 	public boolean saveAccount(Account account) {
 		return accountService.save(account);
 	}
 	
 	
 	@DELETE
-//	@RolesAllowed("Admin")
+	@RolesAllowed("Admin")
 	@PermitAll
 	@Path("/delete/{id}")
 	public boolean deleteAccount(@PathParam("id") Long id) {
@@ -56,7 +56,7 @@ public class AccountController {
 	
 	
 	@PUT
-//	@RolesAllowed("Admin")
+	@RolesAllowed("Admin")
 	@PermitAll
 	@Path("/update")
 	public int updateAccount(AccountUpdateDTO account) {
@@ -64,7 +64,7 @@ public class AccountController {
 	}
 	
 	@GET
-//	@RolesAllowed("Admin")
+	@RolesAllowed("Admin")
 	@PermitAll
 	@Path("/getAll")
 	public List<Account> getAll(){
@@ -72,7 +72,7 @@ public class AccountController {
 	}
 	
 	@GET
-//	@RolesAllowed("Admin")
+	@RolesAllowed("Admin")
 	@PermitAll
 	@Path("/getById/{id}")
 	public Account getById(@PathParam("id") Long id) {
