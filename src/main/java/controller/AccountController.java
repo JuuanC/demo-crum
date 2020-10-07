@@ -48,7 +48,6 @@ public class AccountController {
 	
 	@DELETE
 	@RolesAllowed("Admin")
-	@PermitAll
 	@Path("/delete/{id}")
 	public boolean deleteAccount(@PathParam("id") Long id) {
 		return accountService.delete(id);
@@ -57,7 +56,6 @@ public class AccountController {
 	
 	@PUT
 	@RolesAllowed("Admin")
-	@PermitAll
 	@Path("/update")
 	public int updateAccount(AccountUpdateDTO account) {
 		return accountService.update(account);
@@ -65,7 +63,6 @@ public class AccountController {
 	
 	@GET
 	@RolesAllowed("Admin")
-	@PermitAll
 	@Path("/getAll")
 	public List<Account> getAll(){
 		return accountService.getAll();
@@ -73,7 +70,6 @@ public class AccountController {
 	
 	@GET
 	@RolesAllowed("Admin")
-	@PermitAll
 	@Path("/getById/{id}")
 	public Account getById(@PathParam("id") Long id) {
 		return accountService.getById(id);
