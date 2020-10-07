@@ -27,7 +27,19 @@ import security.enums.RoleEnum;
 import service.AccountService;
 import service.RoleService;
 
-
+/**
+ * Controla la comunicación, especificamente encargada de proveer servicios de autenticación y registro de nuevos usuarios
+ * a la plataforma. Provee de datos de accesos necesarios para los clientes que necesiten comunicarse y utilizar los demas
+ * puntos de acceso de la plataforma. 
+ * 
+ * <code>register</code> - Encargada de registrar nuevos usuarios en el sistema, a su vez de asignar roles de acuerdo a los 
+ * roles recibidos o para roles asignados por defecto.
+ * 
+ * <code>login</code> - Encargada de autenticar las credenciales recibidas por un cliente para autenticarlo en el sistema
+ * y brindarle un token de acceso para sus futuras peticiones a otros contraladores de servicios rest del sistema.
+ * 
+ * @author José Alberto Espinoza
+ */
 @Path("/auth")
 public class AuthController {
 	@Inject
@@ -36,17 +48,9 @@ public class AuthController {
 	RoleService roleService;
 	@Inject
 	AccountService accountService;
-	
-	private static final Logger log = Logger.getLogger(AuthController.class);
 
 	@ConfigProperty(name = "demo-crum.quarkusjwt.jwt.duration") public Long duration;
 	@ConfigProperty(name = "mp.jwt.verify.issuer") public String issuer;
-	
-	@PermitAll
-	@GET @Path("") @Produces(MediaType.APPLICATION_JSON)
-	public Response prueba() {
-		return Response.ok("Prueba de permit all").build();
-	}
 	
 	@PermitAll
 	@POST @Path("/register")

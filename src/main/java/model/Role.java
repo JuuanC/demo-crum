@@ -11,11 +11,15 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import security.enums.RoleEnum;
-
+/**
+ * Recopila y mapea la información relacionado con los roles de los usuarios del sistema, conformada unicamente por dos atributos
+ * <code>id</code> y <code>role</code> este ultimo haciendo referencia a @see security.enums.RoleEnum enumarador con los
+ * roles utilizados por el sistema.
+ * Mapeada a la BD con Hibernate ORM como la tabla <code>role</code> y relacionada de muchos a muchos con la tabla <code>accounts</code>
+ * @author José Alberto Espinoza
+ * 
+ */
 @Entity(name="role")
 @Table(name="role")
 public class Role {
@@ -51,6 +55,11 @@ public class Role {
 		this.role = role;
 	}
 
+	/**
+	 * Constructor que inicializa todos los atributos de la clase Role
+	 * @param id identificador unico del rol
+	 * @param role nombre del rol
+	 */
 	public Role(long id, @NotNull RoleEnum role) {
 		super();
 		this.id = id;
