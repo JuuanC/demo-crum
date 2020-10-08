@@ -10,7 +10,6 @@ import javax.persistence.Table;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
 @Entity

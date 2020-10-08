@@ -1,23 +1,6 @@
 package dto;
 
-import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import model.Account;
-import model.Role;
-import security.enums.RoleEnum;
 
 public class AccountUpdateDTO {
 

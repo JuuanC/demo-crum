@@ -12,10 +12,7 @@ public class AccountTest {
 	
 	@Test
 	public void saveTest() {
-		given()
-		.when().post("http://localhost:8083/account/save")
-		.then()
-		.body()
+		
 	}
 	
 	@Test
