@@ -25,7 +25,7 @@ public class AppLifeCycleBean {
         LOG.warn("Mensaje de warn");
         LOG.error("Mensaje de error");
 
-        throw new RuntimeException();
+        throw new RuntimeException()
     }
 
     void onStop(@Observes ShutdownEvent ev) {               
