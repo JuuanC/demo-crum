@@ -18,20 +18,14 @@ public class AppLifeCycleBean {
 
     void onStart(@Observes StartupEvent ev) throws InterruptedException {               
         LOG.info("The application is starting...");
-        for (int i = 0; i < NUM_OF_ITERATIONS; i++) {
  
-            LOG.trace("Mensaje de trace");
-            LOG.debug("Mensaje de debug");
-            LOG.info("Mensaje de info");
-            LOG.warn("Mensaje de warn");
-            LOG.error("Mensaje de error");
- 
-            // para separar las iteraciones
-            System.out.println();
- 
-            Thread.sleep(MILLISECONDS_TO_SLEEP);
-        }
-        
+        LOG.trace("Mensaje de trace");
+        LOG.debug("Mensaje de debug");
+        LOG.info("Mensaje de info");
+        LOG.warn("Mensaje de warn");
+        LOG.error("Mensaje de error");
+
+        throw new RuntimeException();
     }
 
     void onStop(@Observes ShutdownEvent ev) {               
